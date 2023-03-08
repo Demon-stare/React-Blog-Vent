@@ -23,7 +23,7 @@ export default function Auth() {
 
   return (
     <div className="header">
-      <h1>Welcome to Vent 🌬</h1>
+      <h1>Welcome to Vent🌬</h1>
       {loading ? (
         'Sending link...'
       ) : (
