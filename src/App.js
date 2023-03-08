@@ -18,13 +18,5 @@ export default function App() {
     });
   }, []);
 
-  return (
-    <div className="container">
-      {!session ? (
-        <Auth />
-      ) : (
-        <Account key={session.user.id} session={session} />
-      )}
-    </div>
-  );
+  return <div className="container">{!session ? <Auth /> : <Feed />}</div>;
 }
