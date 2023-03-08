@@ -5,8 +5,7 @@ import { supabase } from './supabaseClient';
 const Account = ({ session }) => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
+  const [aboutme, setaboutme] = useState(null);
 
   useEffect(() => {
     getProfile();
@@ -19,7 +18,7 @@ const Account = ({ session }) => {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, aboutme`)
         .eq('id', user.id)
         .single();
 
@@ -29,8 +28,7 @@ const Account = ({ session }) => {
 
       if (data) {
         setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
+        setaboutme(data.aboutme);
       }
     } catch (error) {
       alert(error.message);
@@ -49,8 +47,7 @@ const Account = ({ session }) => {
       const updates = {
         id: user.id,
         username,
-        website,
-        avatar_url,
+        aboutme,
         updated_at: new Date(),
       };
 
@@ -67,12 +64,12 @@ const Account = ({ session }) => {
   };
 
   return (
-    <div aria-live="polite">
+    <div id="After login">
       {loading ? (
         'Saving ...'
       ) : (
         <form onSubmit={updateProfile} className="form-widget">
-          <div>Email: {session.user.email}</div>
+          <div>Your Email: {session.user.email}</div>
           <div>
             <label htmlFor="username">Name</label>
             <input
@@ -83,12 +80,12 @@ const Account = ({ session }) => {
             />
           </div>
           <div>
-            <label htmlFor="website">Website</label>
+            <label htmlFor="aboutme">aboutme</label>
             <input
-              id="website"
+              id="aboutme"
               type="url"
-              value={website || ''}
-              onChange={(e) => setWebsite(e.target.value)}
+              value={aboutme || ''}
+              onChange={(e) => setaboutme(e.target.value)}
             />
           </div>
           <div>
@@ -98,6 +95,7 @@ const Account = ({ session }) => {
           </div>
         </form>
       )}
+
       <button
         type="button"
         className="button block"
