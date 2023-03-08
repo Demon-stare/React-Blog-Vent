@@ -22,29 +22,24 @@ export default function Auth() {
   };
 
   return (
-    <div className="row flex-center flex">
-      <div className="col-6 form-widget" aria-live="polite">
-        <h1 className="header">Vent</h1>
-        <p className="description">Sign in using link</p>
-        {loading ? (
-          'Sending link...'
-        ) : (
-          <form onSubmit={handleLogin}>
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              className="inputField"
-              type="email"
-              placeholder="Your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <button className="button block" aria-live="polite">
-              Send magic link
-            </button>
-          </form>
-        )}
-      </div>
+    <div className="header">
+      <h1>Welcome to Vent 🌬</h1>
+      {loading ? (
+        'Sending link...'
+      ) : (
+        <form onSubmit={handleLogin}>
+          <br />
+          <input
+            id="email"
+            className="inputField"
+            type="email"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button id="Send_Link_Button">Send link</button>
+        </form>
+      )}
     </div>
   );
 }
