@@ -83,7 +83,7 @@ const Account = ({ session }) => {
             <label htmlFor="aboutme">aboutme</label>
             <input
               id="aboutme"
-              type="url"
+              type="text"
               value={aboutme || ''}
               onChange={(e) => setaboutme(e.target.value)}
             />
@@ -96,11 +96,7 @@ const Account = ({ session }) => {
         </form>
       )}
 
-      <button
-        type="button"
-        className="button block"
-        onClick={() => supabase.auth.signOut()}
-      >
+      <button type="button" onClick={() => supabase.auth.signOut()}>
         Sign Out
       </button>
     </div>
