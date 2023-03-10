@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import Auth from './Auth';
 import Account from './Account';
+import Feed from './Feed';
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -18,13 +19,5 @@ export default function App() {
     });
   }, []);
 
-  return (
-    <div className="container">
-      {!session ? (
-        <Auth />
-      ) : (
-        <Account key={session.user.id} session={session} />
-      )}
-    </div>
-  );
+  return <div className="container">{!session ? <Feed /> : <Feed />}</div>;
 }
